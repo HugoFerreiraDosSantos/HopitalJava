@@ -76,15 +76,15 @@ public class Interrogation extends JPanel implements ActionListener {
             textEtOu[i] = new JLabel("Ou");
             etOu[i] = new JRadioButton("Ou", true);
             etOu[i].setSelected(true);
-            textEtOu[i].setBounds(autoSizeX(0.38 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
-            etOu[i].setBounds(autoSizeX(0.40 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            etOu[i].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
             this.add(textEtOu[i]);
             this.add(etOu[i]);
 
             textEtOu[i + 1] = new JLabel("Et");
             etOu[i + 1] = new JRadioButton("Et");
-            textEtOu[i + 1].setBounds(autoSizeX(0.38 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
-            etOu[i + 1].setBounds(autoSizeX(0.40 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+            textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+            etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
             this.add(textEtOu[i + 1]);
             this.add(etOu[i + 1]);
 
@@ -123,42 +123,42 @@ public class Interrogation extends JPanel implements ActionListener {
             this.add(titles[i + 3]);
 
             alias[i] = new JTextField();
-            alias[i].setBounds(autoSizeX(0.0975 + i * 0.33125), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
+            alias[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(alias[i]);
 
-            listes[i].setBounds(autoSizeX(0.0975 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
+            listes[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listes[i]);
-            listesColonnes[i].setBounds(autoSizeX(0.0975 + i * 0.33125), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
+            listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.33125), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listesColonnes[i]);
 
             textCriteres[i] = new JTextField();
-            textCriteres[i].setBounds(autoSizeX(0.219 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.110), autoSizeY(0.052));
+            textCriteres[i].setBounds(autoSizeX(0.213 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.110), autoSizeY(0.052));
             this.add(textCriteres[i]);
 
-            listesCriteres[i].setBounds(autoSizeX(0.0975 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
+            listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
             this.add(listesCriteres[i]);
 
-            listesTri[i].setBounds(autoSizeX(0.155 + i * 0.33125), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
+            listesTri[i].setBounds(autoSizeX(0.149 + i * 0.33125), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
             this.add(listesTri[i]);
         }
 
         titles[0].setText("Saisissez votre recherche :");
-        titles[0].setBounds(autoSizeX(0.425), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
+        titles[0].setBounds(autoSizeX(0.419), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[1].setText("Colonne");
-        titles[1].setBounds(autoSizeX(0.02), autoSizeY(0.07), autoSizeX(0.15), autoSizeY(0.033));
+        titles[1].setBounds(autoSizeX(0.005), autoSizeY(0.07), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[2].setText("Opération");
-        titles[2].setBounds(autoSizeX(0.02), autoSizeY(0.15), autoSizeX(0.15), autoSizeY(0.033));
+        titles[2].setBounds(autoSizeX(0.005), autoSizeY(0.15), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[3].setText("Alias");
-        titles[3].setBounds(autoSizeX(0.02), autoSizeY(0.22), autoSizeX(0.15), autoSizeY(0.033));
+        titles[3].setBounds(autoSizeX(0.005), autoSizeY(0.22), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[4].setText("Critère");
-        titles[4].setBounds(autoSizeX(0.02), autoSizeY(0.31), autoSizeX(0.15), autoSizeY(0.033));
+        titles[4].setBounds(autoSizeX(0.005), autoSizeY(0.31), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[5].setText("Tri");
-        titles[5].setBounds(autoSizeX(0.02), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));
+        titles[5].setBounds(autoSizeX(0.005), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));
 
         valider.setBounds(autoSizeX(0.6), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
         valider.addActionListener(this);

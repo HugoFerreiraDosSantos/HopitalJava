@@ -17,7 +17,7 @@ public class HopitalGraphique extends JFrame {
     private MenuConnexion menuCo;
     private MenuPrincipal menuPr;
     private MenuReporting menuRe;
-    private Interrogation interrogation;
+    private MenuInterrogation menuInterrogation;
     private static Dimension dimFen;
 
     public HopitalGraphique() {
@@ -29,7 +29,7 @@ public class HopitalGraphique extends JFrame {
         Dimension dim = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
         //dimFen = new Dimension((int) dim.getWidth() * 2 / 3, (int) dim.getHeight() * 2 / 3);
-        dimFen = new Dimension(600, 400);
+        dimFen = new Dimension(800, 600);
         this.setSize((int) dimFen.getWidth(), (int) dimFen.getHeight());
         menuCo = new MenuConnexion(this);
 
@@ -57,8 +57,8 @@ public class HopitalGraphique extends JFrame {
                 this.setContentPane(menuRe);
                 break;
             case 3:
-                interrogation = new Interrogation(this);
-                this.setContentPane(interrogation);
+                menuInterrogation = new MenuInterrogation(this);
+                this.setContentPane(menuInterrogation);
                 break;
 
             default:;
