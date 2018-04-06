@@ -28,9 +28,9 @@ public class DocParSpe extends JPanel {
     public DocParSpe() {
         resultats = new ArrayList<>();
         this.setLayout(null);
-        JPanel pan = createDemoPanel();
-        pan.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
-        this.add(pan);
+        JPanel pane = createDemoPanel();
+        pane.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
+        this.add(pane);
     }
 
     private PieDataset createDataset() {
