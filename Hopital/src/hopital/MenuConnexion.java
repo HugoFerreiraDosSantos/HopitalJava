@@ -10,10 +10,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -35,7 +39,7 @@ public class MenuConnexion extends JPanel implements ActionListener {
     private JButton valider;
     private static Connexion db;
     // private ImagePan title;
-    private JLabel conn;
+    // private JLabel conn;
     private JTextField test[];
     private HopitalGraphique hopGraph;
 
@@ -49,7 +53,7 @@ public class MenuConnexion extends JPanel implements ActionListener {
         distante = new JRadioButton("Distante");
         valider = new JButton("Valider");
         //title = new ImagePan();
-        conn = new JLabel("Type de connexion :");
+        //   conn = new JLabel("Type de connexion :");
         test = new JTextField[7];
         this.build();
 
@@ -63,8 +67,8 @@ public class MenuConnexion extends JPanel implements ActionListener {
         this.setLayout(null);
         //  title.setBounds(0, 0, 100, 100);//autoSizeX(0.3125), autoSizeY(0.08333), autoSizeX(0.225), autoSizeY(0.033));
         // this.add(title);
-        conn.setBounds(autoSizeX(0.41875), autoSizeY(0.3333), autoSizeX(0.375), autoSizeY(0.033));
-        this.add(conn);
+        //conn.setBounds(autoSizeX(0.41875), autoSizeY(0.3333), autoSizeX(0.375), autoSizeY(0.033));
+        //this.add(conn);
         pan_locale.add(locale);
         test[0] = new JTextField();
         test[0].setToolTipText("NameDatabase");
@@ -140,7 +144,13 @@ public class MenuConnexion extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        conn.setBounds(autoSizeX(0.41875), autoSizeY(0.3333), autoSizeX(0.375), autoSizeY(0.033));
+        try {
+            g.drawImage(ImageIO.read(new File("connexion.png")), 0, 0, autoSizeX(1.0), autoSizeY(1.0), this);
+            //conn.setBounds(autoSizeX(0.41875), autoSizeY(0.3333), autoSizeX(0.375), autoSizeY(0.033));
+
+        } catch (IOException ex) {
+            Logger.getLogger(MenuConnexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         for (int i = 0; i < 3; i++) {
             test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));

@@ -9,14 +9,16 @@ import static hopital.HopitalGraphique.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -33,14 +35,14 @@ public class Interrogation extends JPanel implements ActionListener {
     private JComboBox listesCriteres[];
     private JComboBox listesTri[];
     private JTextField textCriteres[];
-    private JLabel titles[];
+    //private JLabel titles[];
     private JTextField alias[];
     private ArrayList<String> resultats;
     private ArrayList<ArrayList< String>> resultats2;
     private JButton valider;
     private JButton retour;
     private JRadioButton etOu[];
-    private JLabel textEtOu[];
+    //private JLabel textEtOu[];
     private ButtonGroup groupRadio[];
 
     public Interrogation(HopitalGraphique hopGraph) {
@@ -48,11 +50,11 @@ public class Interrogation extends JPanel implements ActionListener {
         resultats2 = new ArrayList<>();
         valider = new JButton("Rechercher");
         retour = new JButton("Retour");
-        titles = new JLabel[6];
+        //titles = new JLabel[6];
         alias = new JTextField[3];
         textCriteres = new JTextField[3];
         etOu = new JRadioButton[4];
-        textEtOu = new JLabel[4];
+        //textEtOu = new JLabel[4];
         groupRadio = new ButtonGroup[2];
         this.hopGraph = hopGraph;
 
@@ -74,19 +76,19 @@ public class Interrogation extends JPanel implements ActionListener {
 
         for (int i = 0; i < 4; i += 2) {
 
-            textEtOu[i] = new JLabel("Ou");
+            //textEtOu[i] = new JLabel("Ou");
             etOu[i] = new JRadioButton("Ou", true);
             etOu[i].setSelected(true);
-            textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            //textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
             etOu[i].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
-            this.add(textEtOu[i]);
+            //this.add(textEtOu[i]);
             this.add(etOu[i]);
 
-            textEtOu[i + 1] = new JLabel("Et");
+            // textEtOu[i + 1] = new JLabel("Et");
             etOu[i + 1] = new JRadioButton("Et");
-            textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+            //textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
             etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
-            this.add(textEtOu[i + 1]);
+            //this.add(textEtOu[i + 1]);
             this.add(etOu[i + 1]);
 
             groupRadio[i / 2] = new ButtonGroup();
@@ -118,11 +120,11 @@ public class Interrogation extends JPanel implements ActionListener {
         listesTri = new JComboBox[]{new JComboBox(objects4), new JComboBox(objects4), new JComboBox(objects4)};
 
         for (int i = 0; i < 3; i++) {
-            titles[i] = new JLabel();
+            /*      titles[i] = new JLabel();
             titles[i + 3] = new JLabel();
             this.add(titles[i]);
             this.add(titles[i + 3]);
-
+             */
             alias[i] = new JTextField();
             alias[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(alias[i]);
@@ -143,7 +145,7 @@ public class Interrogation extends JPanel implements ActionListener {
             this.add(listesTri[i]);
         }
 
-        titles[0].setText("Saisissez votre recherche :");
+        /* titles[0].setText("Saisissez votre recherche :");
         titles[0].setBounds(autoSizeX(0.419), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[1].setText("Colonne");
@@ -159,11 +161,10 @@ public class Interrogation extends JPanel implements ActionListener {
         titles[4].setBounds(autoSizeX(0.005), autoSizeY(0.31), autoSizeX(0.15), autoSizeY(0.033));
 
         titles[5].setText("Tri");
-        titles[5].setBounds(autoSizeX(0.005), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));
-
-        valider.setBounds(autoSizeX(0.6), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        titles[5].setBounds(autoSizeX(0.005), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));*/
+        valider.setBounds(autoSizeX(0.595), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
         valider.addActionListener(this);
-        retour.setBounds(autoSizeX(0.4), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        retour.setBounds(autoSizeX(0.395), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
         retour.addActionListener(this);
         this.add(valider);
         this.add(retour);
@@ -181,7 +182,6 @@ public class Interrogation extends JPanel implements ActionListener {
             String str;
             String agregat;
             String aliasValue;
-            ArrayList<String> colStr = new ArrayList<>();
 
             for (int i = 0; i < 3; i++) {
                 if (!"".equals((String) listesColonnes[i].getSelectedItem())) {
@@ -219,9 +219,6 @@ public class Interrogation extends JPanel implements ActionListener {
                     aliasValue = alias[i].getText();
                     if (!"".equals(aliasValue)) {
                         requete += " AS " + aliasValue + " ";
-                        colStr.add(aliasValue);
-                    } else {
-                        colStr.add(str);
                     }
                     if (!from.contains(str.substring(0, str.indexOf(".")))) {
                         from += str.substring(0, str.indexOf("."));
@@ -329,6 +326,11 @@ public class Interrogation extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        try {
+            g.drawImage(ImageIO.read(new File("formulaire.png")), 0, 0, autoSizeX(1.0), autoSizeY(1.0), this);
+        } catch (IOException ex) {
+            Logger.getLogger(Interrogation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         for (int i = 0; i < 3; i++) {
             alias[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
 
@@ -341,19 +343,19 @@ public class Interrogation extends JPanel implements ActionListener {
             listesTri[i].setBounds(autoSizeX(0.149 + i * 0.32), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
         }
         for (int i = 0; i < 4; i += 2) {
-            textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            //     textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
             etOu[i].setBounds(autoSizeX(0.394 + i * 0.16), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
-            textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+            //   textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
             etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
         }
 
-        titles[0].setBounds(autoSizeX(0.419), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
+        /*  titles[0].setBounds(autoSizeX(0.419), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
         titles[1].setBounds(autoSizeX(0.005), autoSizeY(0.07), autoSizeX(0.15), autoSizeY(0.033));
         titles[2].setBounds(autoSizeX(0.005), autoSizeY(0.15), autoSizeX(0.15), autoSizeY(0.033));
         titles[3].setBounds(autoSizeX(0.005), autoSizeY(0.22), autoSizeX(0.15), autoSizeY(0.033));
         titles[4].setBounds(autoSizeX(0.005), autoSizeY(0.31), autoSizeX(0.15), autoSizeY(0.033));
         titles[5].setBounds(autoSizeX(0.005), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));
-
+         */
         valider.setBounds(autoSizeX(0.6), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
         retour.setBounds(autoSizeX(0.4), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
     }
