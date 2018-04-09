@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -70,4 +71,15 @@ public class MenuPrincipal extends JPanel implements ActionListener {
             hopGraph.changeFenetre(3);
         }
     }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        title.setBounds(autoSizeX(0.456), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
+        reporting.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
+        miseAJour.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
+        interrogation.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));
+        retour.setBounds(autoSizeX(0.36875), autoSizeY(0.75), autoSizeX(0.25), autoSizeY(0.116));
+    }
+
 }

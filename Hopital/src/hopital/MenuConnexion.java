@@ -7,6 +7,7 @@ package hopital;
 
 import static hopital.HopitalGraphique.*;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -134,6 +135,26 @@ public class MenuConnexion extends JPanel implements ActionListener {
 
     public static Connexion getConnexion() {
         return db;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        conn.setBounds(autoSizeX(0.41875), autoSizeY(0.3333), autoSizeX(0.375), autoSizeY(0.033));
+
+        for (int i = 0; i < 3; i++) {
+            test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));
+        }
+        pan_locale.setBounds(autoSizeX(0.15), autoSizeY(0.5), autoSizeX(0.5), autoSizeY(0.0667));
+
+        for (int i = 3; i < 7; i++) {
+            test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));
+        }
+
+        pan_distante.setBounds(autoSizeX(0.14375), autoSizeY(0.6167), autoSizeX(0.625), autoSizeY(0.0667));
+
+        valider.setBounds(autoSizeX(0.43125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+
     }
 
 }

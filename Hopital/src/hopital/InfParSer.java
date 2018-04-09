@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,11 +26,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class InfParSer extends JPanel {
 
     private ArrayList<String> resultats;
+    private JPanel pan;
 
     public InfParSer() {
         resultats = new ArrayList<>();
         this.setLayout(null);
-        JPanel pan = createDemoPanel();
+        pan = createDemoPanel();
         pan.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
         this.add(pan);
     }
@@ -37,7 +39,7 @@ public class InfParSer extends JPanel {
     private CategoryDataset createDataset() {
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(numero), code_service FROM infirmier WHERE rotation = 'JOUR' GROUP BY (code_service) UNION ALL SELECT count(numero), code_service FROM infirmier WHERE rotation = 'NUIT' GROUP BY (code_service)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(numero), code_service FROM infirmier WHERE rotation = 'JOUR' GROUP BY (code_service) UNION ALL SELECT count(numero), code_service FROM infirmier WHERE rotation = 'NUIT' GROUP BY (code_service)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -50,9 +52,9 @@ public class InfParSer extends JPanel {
         int demiSize = resultats.size() / 2;
         for (int i = 0; i < demiSize; i++) {
             str = resultats.get(i);
-            dataset.addValue(Integer.parseInt(str.substring(0, str.indexOf(","))), "JOUR", str.substring(str.indexOf(",") + 1));
+            dataset.addValue(Integer.parseInt(str.substring(0, str.indexOf(";"))), "JOUR", str.substring(str.indexOf(";") + 1));
             str = resultats.get(i + demiSize);
-            dataset.addValue(Integer.parseInt(str.substring(0, str.indexOf(","))), "NUIT", str.substring(str.indexOf(",") + 1));
+            dataset.addValue(Integer.parseInt(str.substring(0, str.indexOf(";"))), "NUIT", str.substring(str.indexOf(";") + 1));
         }
 
         return dataset;
@@ -74,4 +76,9 @@ public class InfParSer extends JPanel {
         return chart;
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        pan.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
+    }
 }

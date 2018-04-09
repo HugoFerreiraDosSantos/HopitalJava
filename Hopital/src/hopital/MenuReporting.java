@@ -10,6 +10,7 @@ package hopital;
  * @author PPC
  */
 import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -51,6 +52,13 @@ public class MenuReporting extends JPanel implements ActionListener {
             hopGraph.changeFenetre(1);
         }
 
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        onglets.setBounds(autoSizeX(0.0625), autoSizeY(0.033), autoSizeX(0.875), autoSizeY(0.783));
+        retour.setBounds(autoSizeX(0.3125), autoSizeY(0.833), autoSizeX(0.375), autoSizeY(0.0833));
     }
 
 }

@@ -34,7 +34,7 @@ public class InterroRequete extends JPanel {
         if (!resultats.isEmpty()) {
             int cpt = 0;
             for (int i = 0; i < resultats.get(0).length(); i++) {
-                if (resultats.get(0).charAt(i) == ',') {
+                if (resultats.get(0).charAt(i) == ';') {
                     cpt++;
                 }
             }
@@ -42,8 +42,8 @@ public class InterroRequete extends JPanel {
             Object data[][] = new Object[resultats.size()][cpt + 1];
             for (int i = 0; i < resultats.size(); i++) {
                 int j = 0;
-                while (resultats.get(i).contains(",")) {
-                    int pos = resultats.get(i).indexOf(",");
+                while (resultats.get(i).contains(";")) {
+                    int pos = resultats.get(i).indexOf(";");
                     data[i][j++] = resultats.get(i).substring(0, pos);
                     resultats.set(i, resultats.get(i).substring(pos + 1));
                 }

@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -61,10 +62,10 @@ public class Interrogation extends JPanel implements ActionListener {
     private void build() {
         this.setLayout(null);
         try {
-            resultats = MenuConnexion.getConnexion().remplirChampsRequete("show tables");
+            resultats = MenuConnexion.getConnexion().remplirChampsRequete2("show tables");
             for (int i = 0; i < resultats.size(); i++) {
                 resultats2.add(new ArrayList<>());
-                resultats2.set(i, MenuConnexion.getConnexion().remplirChampsRequete("show columns from " + resultats.get(i)));
+                resultats2.set(i, MenuConnexion.getConnexion().remplirChampsRequete2("show columns from " + resultats.get(i)));
             }
 
         } catch (SQLException ex) {
@@ -105,7 +106,7 @@ public class Interrogation extends JPanel implements ActionListener {
         objects2[0] = "";
         for (int i = 0; i < resultats2.size(); i++) {
             for (int j = 0; j < resultats2.get(i).size(); j++) {
-                objects2[cpt++] = resultats.get(i) + '.' + resultats2.get(i).get(j).substring(0, resultats2.get(i).get(j).indexOf(","));
+                objects2[cpt++] = resultats.get(i) + '.' + resultats2.get(i).get(j).substring(0, resultats2.get(i).get(j).indexOf(";"));
             }
         }
         String[] objects3 = new String[]{"", "Egal à", "Different de", "Inferieur à", "Superieur à", "Inferieur ou egal à", "Superieur ou egal à", "Contient", "Commence par", "Termine par"};
@@ -305,25 +306,56 @@ public class Interrogation extends JPanel implements ActionListener {
                 requete += ordre;
             }
 
-            String[] cast = new String[colStr.size()];
+            String[] title = null;
             if (!"".equals(requete)) {
                 try {
 
-                    resultats = MenuConnexion.getConnexion().remplirChampsRequete(requete);
-
+                    resultats = MenuConnexion.getConnexion().remplirChampsRequete2(requete);
+                    title = MenuConnexion.getConnexion().remplirChampsColumn(requete);
                 } catch (SQLException ex) {
                     Logger.getLogger(Interrogation.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                for (int i = 0; i < colStr.size(); i++) {
-                    cast[i] = colStr.get(i);
-                }
             }
             InterroRequete interroRequete;
-            interroRequete = new InterroRequete(resultats, cast);
+
+            interroRequete = new InterroRequete(resultats, title);
 
         } else if (source == retour) {
             hopGraph.changeFenetre(1);
         }
     }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        for (int i = 0; i < 3; i++) {
+            alias[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
+
+            listes[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
+            listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
+            textCriteres[i].setBounds(autoSizeX(0.213 + i * 0.32), autoSizeY(0.30), autoSizeX(0.110), autoSizeY(0.052));
+
+            listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.32), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
+
+            listesTri[i].setBounds(autoSizeX(0.149 + i * 0.32), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
+        }
+        for (int i = 0; i < 4; i += 2) {
+            textEtOu[i].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            etOu[i].setBounds(autoSizeX(0.394 + i * 0.16), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
+            textEtOu[i + 1].setBounds(autoSizeX(0.374 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+            etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
+        }
+
+        titles[0].setBounds(autoSizeX(0.419), autoSizeY(0.0083), autoSizeX(0.15), autoSizeY(0.033));
+        titles[1].setBounds(autoSizeX(0.005), autoSizeY(0.07), autoSizeX(0.15), autoSizeY(0.033));
+        titles[2].setBounds(autoSizeX(0.005), autoSizeY(0.15), autoSizeX(0.15), autoSizeY(0.033));
+        titles[3].setBounds(autoSizeX(0.005), autoSizeY(0.22), autoSizeX(0.15), autoSizeY(0.033));
+        titles[4].setBounds(autoSizeX(0.005), autoSizeY(0.31), autoSizeX(0.15), autoSizeY(0.033));
+        titles[5].setBounds(autoSizeX(0.005), autoSizeY(0.39), autoSizeX(0.15), autoSizeY(0.033));
+
+        valider.setBounds(autoSizeX(0.6), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        retour.setBounds(autoSizeX(0.4), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+    }
+
 }

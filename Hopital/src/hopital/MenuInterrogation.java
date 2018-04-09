@@ -5,18 +5,16 @@
  */
 package hopital;
 
-import static hopital.HopitalGraphique.autoSizeX;
-import static hopital.HopitalGraphique.autoSizeY;
+import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author PPC
  */
-public class MenuInterrogation extends JPanel implements ChangeListener {
+public class MenuInterrogation extends JPanel {
 
     private JTabbedPane onglets;
     private HopitalGraphique hopGraph;
@@ -31,14 +29,15 @@ public class MenuInterrogation extends JPanel implements ChangeListener {
     private void build() {
         this.setLayout(null);
         onglets.addTab("Recherche par formulaire", new Interrogation(hopGraph));
-        onglets.addTab("Recherche avancée", null);
-        onglets.addChangeListener(this);
-        onglets.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.999), autoSizeY(1.0));
+        onglets.addTab("Recherche avancée", new RechercheAvancee(hopGraph));
+
+        onglets.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.990), autoSizeY(1.0));
         this.add(onglets);
     }
 
     @Override
-    public void stateChanged(ChangeEvent e) {
-
+    public void paint(Graphics g) {
+        super.paint(g);
+        onglets.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.990), autoSizeY(1.0));
     }
 }

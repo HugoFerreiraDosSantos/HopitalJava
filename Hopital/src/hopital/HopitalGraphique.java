@@ -6,6 +6,8 @@
 package hopital;
 
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 
 /**
@@ -32,9 +34,14 @@ public class HopitalGraphique extends JFrame {
         dimFen = new Dimension(800, 600);
         this.setSize((int) dimFen.getWidth(), (int) dimFen.getHeight());
         menuCo = new MenuConnexion(this);
-
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                dimFen = e.getComponent().getSize();
+            }
+        });
         this.setContentPane(menuCo);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setTitle("Hopital");
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Graphics;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -20,11 +21,12 @@ import org.jfree.data.general.PieDataset;
 public class PatParSer extends JPanel {
 
     private ArrayList<String> resultats;
+    private JPanel pan;
 
     public PatParSer() {
         resultats = new ArrayList<>();
         this.setLayout(null);
-        JPanel pan = createDemoPanel();
+        pan = createDemoPanel();
         pan.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
         this.add(pan);
     }
@@ -34,7 +36,7 @@ public class PatParSer extends JPanel {
 
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(no_malade), code_service FROM hospitalisation GROUP BY (code_service)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(no_malade), code_service FROM hospitalisation GROUP BY (code_service)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -45,8 +47,8 @@ public class PatParSer extends JPanel {
         int value;
         String label;
         for (int i = 0; i < resultats.size(); i++) {
-            value = Integer.parseInt(resultats.get(i).substring(0, resultats.get(i).indexOf(",")));
-            label = resultats.get(i).substring(resultats.get(i).indexOf(",") + 1);
+            value = Integer.parseInt(resultats.get(i).substring(0, resultats.get(i).indexOf(";")));
+            label = resultats.get(i).substring(resultats.get(i).indexOf(";") + 1);
 
             dataset.setValue(label, new Double(value));
         }
@@ -70,6 +72,12 @@ public class PatParSer extends JPanel {
         JFreeChart chart = createChart(createDataset());
 
         return new ChartPanel(chart);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        pan.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.86875), autoSizeY(0.725));
     }
 
 }
