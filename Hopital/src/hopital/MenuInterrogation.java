@@ -28,8 +28,8 @@ public class MenuInterrogation extends JPanel {
 
     private void build() {
         this.setLayout(null);
-        onglets.addTab("Recherche par formulaire", new Interrogation(hopGraph));
-        onglets.addTab("Recherche avancée", new RechercheAvancee(hopGraph));
+        onglets.addTab("Recherche par formulaire", new InterrogationImpl(hopGraph));
+        onglets.addTab("Recherche avancée", new RechercheAvanceeImpl(hopGraph));
 
         onglets.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(0.990), autoSizeY(1.0));
         this.add(onglets);
