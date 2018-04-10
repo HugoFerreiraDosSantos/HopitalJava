@@ -37,13 +37,12 @@ public class MenuReporting extends JPanel implements ActionListener {
         onglets.addTab("Docteurs par spécialité", new DocParSpe());
         onglets.addTab("Infirmiers par service", new InfParSer());
         onglets.addTab("Patients par service", new PatParSer());
-        onglets.addTab("Maladies les plus contractées", null);
-        onglets.setBounds(autoSizeX(0.0625), autoSizeY(0.033), autoSizeX(0.875), autoSizeY(0.783));
+        onglets.addTab("Maladies les plus contractées par sexe", new MalParSexe());
         this.add(onglets);
 
-        retour.setBounds(autoSizeX(0.3125), autoSizeY(0.833), autoSizeX(0.375), autoSizeY(0.0833));
         retour.addActionListener(this);
         add(retour);
+        repaint();
     }
 
     @Override

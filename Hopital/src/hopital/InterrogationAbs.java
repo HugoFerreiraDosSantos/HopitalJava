@@ -65,18 +65,16 @@ public abstract class InterrogationAbs extends JPanel {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Interrogation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InterrogationAbs.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         for (int i = 0; i < 4; i += 2) {
 
             etOu[i] = new JRadioButton("Ou", true);
             etOu[i].setSelected(true);
-            etOu[i].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.3), autoSizeX(0.02), autoSizeY(0.02));
             this.add(etOu[i]);
 
             etOu[i + 1] = new JRadioButton("Et");
-            etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16525), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
             this.add(etOu[i + 1]);
 
             groupRadio[i / 2] = new ButtonGroup();
@@ -109,7 +107,6 @@ public abstract class InterrogationAbs extends JPanel {
 
         for (int i = 0; i < 3; i++) {
             alias[i] = new JTextField();
-            alias[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(alias[i]);
 
             listes[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
@@ -118,7 +115,6 @@ public abstract class InterrogationAbs extends JPanel {
             this.add(listesColonnes[i]);
 
             textCriteres[i] = new JTextField();
-            textCriteres[i].setBounds(autoSizeX(0.213 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.110), autoSizeY(0.052));
             this.add(textCriteres[i]);
 
             listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
@@ -128,11 +124,9 @@ public abstract class InterrogationAbs extends JPanel {
             this.add(listesTri[i]);
         }
 
-        valider.setBounds(autoSizeX(0.545), autoSizeY(0.6), autoSizeX(0.15), autoSizeY(0.05));
-        retour.setBounds(autoSizeX(0.345), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
-
         this.add(valider);
         this.add(retour);
+        repaint();
     }
 
     @Override
@@ -141,7 +135,7 @@ public abstract class InterrogationAbs extends JPanel {
         try {
             g.drawImage(ImageIO.read(new File("formulaire.png")), 0, 0, autoSizeX(1.0), autoSizeY(1.0), this);
         } catch (IOException ex) {
-            Logger.getLogger(Interrogation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InterrogationAbs.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 0; i < 3; i++) {
             alias[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));

@@ -95,6 +95,7 @@ public class MenuConnexion extends JPanel implements ActionListener {
         valider.setBounds(autoSizeX(0.43125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
         this.add(valider);
         valider.addActionListener(this);
+        repaint();
     }
 
     public boolean connect(boolean bool_locale) {

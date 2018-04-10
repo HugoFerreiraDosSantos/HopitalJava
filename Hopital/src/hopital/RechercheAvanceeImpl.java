@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RechercheAvanceeImpl extends RechercheAvancee implements ActionListener {
+public class RechercheAvanceeImpl extends RechercheAvanceeAbs implements ActionListener {
 
     private InterroRequete interroRequete;
     private String requete;
@@ -24,6 +24,7 @@ public class RechercheAvanceeImpl extends RechercheAvancee implements ActionList
 
     private void build() {
         b.addActionListener(this);
+        r.addActionListener(this);
 
     }
 
@@ -49,6 +50,10 @@ public class RechercheAvanceeImpl extends RechercheAvancee implements ActionList
 
             interroRequete = new InterroRequete(resultats, title);
 
+        }
+        else if (e.getSource() == r)
+        {
+            hopGraph.changeFenetre(1);
         }
 
     }
