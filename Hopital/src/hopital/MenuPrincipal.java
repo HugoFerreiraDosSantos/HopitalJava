@@ -19,12 +19,12 @@ import javax.swing.JPanel;
  */
 public class MenuPrincipal extends JPanel implements ActionListener {
 
-    private JButton retour;
-    private HopitalGraphique hopGraph;
-    private JLabel title;
-    private JButton reporting;
-    private JButton interrogation;
-    private JButton miseAJour;
+    private final JButton retour;
+    private final HopitalGraphique hopGraph;
+    private final JLabel title;
+    private final JButton reporting;
+    private final JButton interrogation;
+    private final JButton miseAJour;
 
     public MenuPrincipal(HopitalGraphique hop) {
         hopGraph = hop;
@@ -65,6 +65,9 @@ public class MenuPrincipal extends JPanel implements ActionListener {
             hopGraph.changeFenetre(2);
         } else if (e.getSource() == interrogation) {
             hopGraph.changeFenetre(3);
+        } else if (e.getSource() == miseAJour)
+        {
+             hopGraph.changeFenetre(4);
         }
     }
 

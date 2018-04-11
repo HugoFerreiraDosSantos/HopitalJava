@@ -49,8 +49,9 @@ public class InterroRequete extends JPanel {
                 }
                 data[i][j] = resultats.get(i);
             }
-
+            
             this.add(new JScrollPane(new JTable(data, title)));
+            
             JOptionPane.showMessageDialog(this, this, "Résultat de la requête", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, new JLabel("Aucun résultat"), "Résultat de la requête", JOptionPane.INFORMATION_MESSAGE);
