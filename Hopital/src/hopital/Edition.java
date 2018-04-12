@@ -13,34 +13,32 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Aude
  */
-public class Suppression extends JPanel implements ActionListener{
+public class Edition extends JPanel implements ActionListener{
     
     private final HopitalGraphique hopGraph;
     private JTable table;
-    private JButton suppression;
+    private JButton edition;
     private DefaultTableModel tm;
     private ArrayList <String> resultats;
     private String [] title;
     private Object data [] [];
     private String tableName;
     private int selectData;
-    public Suppression(HopitalGraphique hop,String tabName)
+    public Edition(HopitalGraphique hop,String tabName)
     {
         selectData =0;
         this.tableName = tabName;
         this.hopGraph = hop;
-        suppression = new JButton("Supprimer");
+        edition = new JButton("Modifier");
         this.build();
     }
     private void build(){
@@ -73,58 +71,20 @@ public class Suppression extends JPanel implements ActionListener{
             }
             tm = new DefaultTableModel(data,title);
             
-            table = new JTable(tm){
-                @Override
-                public boolean isCellEditable(int row , int col)
-                    {
-                        return false;
-                    }
-            };
+            table = new JTable(tm);
             
             
             this.add(new JScrollPane(table));
-            this.add(suppression);
-            suppression.addActionListener(this);
+            this.add(edition);
+            edition.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==suppression)
+        if (e.getSource()==edition)
         {
-            int [] selectedRows = table.getSelectedRows();
-            if (selectedRows.length !=0)
-            {
-                int cptSup = 0;
-            for (int select : selectedRows)
-            {
-                String req ="DELETE FROM "+tableName+" WHERE "+title[0] + " = ";
-                 try {
-                            Integer.parseInt((String) data[select+selectData][0]);
-                            req+=data[select+selectData][0];
-                            
-                     } catch (NumberFormatException ex) {
-                            req+="'"+data[select+selectData][0] +"'" ;
-                        }
-             
-                for (int i = 1; i<data[select+selectData].length; i++)
-                {
-                    req += " AND "+title[i] + " = ";
-                    try {
-                            Integer.parseInt((String) data[select+selectData][i]);
-                            req+=data[select+selectData][i];
-                            
-                     } catch (NumberFormatException ex) {
-                            req+="'"+data[select+selectData][i] +"'" ;
-                        }
-                }
-                    try {
-                        getConnexion().executeUpdate(req);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Suppression.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                tm.removeRow(select-cptSup++);}
-            selectData +=cptSup;
-            }
+          
+            
         }
             
             

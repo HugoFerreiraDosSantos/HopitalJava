@@ -23,7 +23,9 @@ public class HopitalGraphique extends JFrame {
     private MenuMisAJour menuMisAJour;
     private MenuSuppression menuSuppression;
     private static Dimension dimFen;
-
+    private MenuAjout menuAjout;
+    private MenuEdition menuEdition;
+    
     public HopitalGraphique() {
 
         this.build();
@@ -73,6 +75,14 @@ public class HopitalGraphique extends JFrame {
                 menuMisAJour = new MenuMisAJour(this);
                 this.setContentPane(menuMisAJour);
                 break;
+             case 5:
+                 menuAjout = new MenuAjout(this);
+                 this.setContentPane(menuAjout);
+                 break;
+              case 6:
+                 menuEdition = new MenuEdition(this);
+                 this.setContentPane(menuEdition);
+                 break;   
               case 7:
                 menuSuppression = new MenuSuppression(this);
                 this.setContentPane(menuSuppression);
