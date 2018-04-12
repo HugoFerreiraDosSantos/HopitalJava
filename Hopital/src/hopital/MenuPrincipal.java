@@ -74,7 +74,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        title.setBounds(autoSizeX(0.456), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
+        title.setBounds(autoSizeX(0.44), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         reporting.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         miseAJour.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         interrogation.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));

@@ -109,18 +109,19 @@ public abstract class InterrogationAbs extends JPanel {
             alias[i] = new JTextField();
             this.add(alias[i]);
 
-            listes[i].setBounds(autoSizeX(0.0924 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
+            listes[i].setBounds(autoSizeX(0.0925 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listes[i]);
-            listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.33125), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
+            
+            listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listesColonnes[i]);
 
             textCriteres[i] = new JTextField();
             this.add(textCriteres[i]);
 
-            listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.33125), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
+            listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.32), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));
             this.add(listesCriteres[i]);
 
-            listesTri[i].setBounds(autoSizeX(0.149 + i * 0.33125), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
+            listesTri[i].setBounds(autoSizeX(0.149 + i * 0.32), autoSizeY(0.38), autoSizeX(0.115), autoSizeY(0.05));
             this.add(listesTri[i]);
         }
 
@@ -138,8 +139,8 @@ public abstract class InterrogationAbs extends JPanel {
             Logger.getLogger(InterrogationAbs.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 0; i < 3; i++) {
-            alias[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
-            listes[i].setBounds(autoSizeX(0.0924 + i * 0.32), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
+            alias[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
+            listes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
             textCriteres[i].setBounds(autoSizeX(0.213 + i * 0.32), autoSizeY(0.30), autoSizeX(0.110), autoSizeY(0.052));
             listesCriteres[i].setBounds(autoSizeX(0.0969 + i * 0.32), autoSizeY(0.30), autoSizeX(0.115), autoSizeY(0.05));

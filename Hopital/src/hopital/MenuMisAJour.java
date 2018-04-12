@@ -5,8 +5,7 @@
  */
 package hopital;
 
-import static hopital.HopitalGraphique.autoSizeX;
-import static hopital.HopitalGraphique.autoSizeY;
+import static hopital.HopitalGraphique.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,7 +75,7 @@ public class MenuMisAJour extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        title.setBounds(autoSizeX(0.456), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
+        title.setBounds(autoSizeX(0.435), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         ajout.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         modification.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         suppression.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));
