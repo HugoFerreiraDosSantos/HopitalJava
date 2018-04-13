@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
@@ -40,9 +41,11 @@ public abstract class InterrogationAbs extends JPanel {
     protected JButton retour;
     protected JRadioButton etOu[];
     protected ButtonGroup groupRadio[];
+    private ImagePan back;
 
     public InterrogationAbs(HopitalGraphique hopGraph) {
         resultats = new ArrayList<>();
+        back = new ImagePan("image.jpg");
         resultats2 = new ArrayList<>();
         valider = new JButton("Rechercher");
         retour = new JButton("Retour");
@@ -111,7 +114,7 @@ public abstract class InterrogationAbs extends JPanel {
 
             listes[i].setBounds(autoSizeX(0.0925 + i * 0.33125), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listes[i]);
-            
+
             listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
             this.add(listesColonnes[i]);
 
@@ -127,6 +130,7 @@ public abstract class InterrogationAbs extends JPanel {
 
         this.add(valider);
         this.add(retour);
+        this.add(back);
         repaint();
     }
 
@@ -138,7 +142,10 @@ public abstract class InterrogationAbs extends JPanel {
         } catch (IOException ex) {
             Logger.getLogger(InterrogationAbs.class.getName()).log(Level.SEVERE, null, ex);
         }
+        back.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(1.0), autoSizeY(1.0));
         for (int i = 0; i < 3; i++) {
+            alias[i].setBackground(Color.PINK);
+            listes[i].setBackground(Color.PINK);
             alias[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
             listes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));

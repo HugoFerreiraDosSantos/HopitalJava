@@ -25,12 +25,6 @@ public class ImagePan extends JPanel {
 
     private String fileName;
 
-    /**
-     *
-     * @param file nom du fichier
-     * @param w largeur désiré
-     * @param h hauteur désire
-     */
     public ImagePan(String file) {
         fileName = file;
         this.build();
