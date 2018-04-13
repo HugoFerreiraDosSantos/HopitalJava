@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
     private final JButton reporting;
     private final JButton interrogation;
     private final JButton miseAJour;
+    private final ImagePan back;
 
     public MenuPrincipal(HopitalGraphique hop) {
         hopGraph = hop;
@@ -33,14 +35,13 @@ public class MenuPrincipal extends JPanel implements ActionListener {
         reporting = new JButton("Reporting");
         miseAJour = new JButton("Mise à jour");
         interrogation = new JButton("Recherche");
+        back = new ImagePan("image.jpg");
         this.build();
     }
 
     private void build() {
         this.setLayout(null);
-
         this.add(title);
-
         reporting.addActionListener(this);
         this.add(reporting);
 
@@ -52,7 +53,7 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
         retour.addActionListener(this);
         this.add(retour);
-
+        this.add(back);
         revalidate();
         repaint();
     }
@@ -65,20 +66,26 @@ public class MenuPrincipal extends JPanel implements ActionListener {
             hopGraph.changeFenetre(2);
         } else if (e.getSource() == interrogation) {
             hopGraph.changeFenetre(3);
-        } else if (e.getSource() == miseAJour)
-        {
-             hopGraph.changeFenetre(4);
+        } else if (e.getSource() == miseAJour) {
+            hopGraph.changeFenetre(4);
         }
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         title.setBounds(autoSizeX(0.44), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         reporting.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         miseAJour.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         interrogation.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));
         retour.setBounds(autoSizeX(0.36875), autoSizeY(0.75), autoSizeX(0.25), autoSizeY(0.116));
+
+        back.setBounds(0, 0, autoSizeX(1.0), autoSizeY(1.0));
+        reporting.setBackground(Color.PINK);
+        miseAJour.setBackground(Color.PINK);
+        interrogation.setBackground(Color.PINK);
+        retour.setBackground(Color.PINK);
     }
 
 }

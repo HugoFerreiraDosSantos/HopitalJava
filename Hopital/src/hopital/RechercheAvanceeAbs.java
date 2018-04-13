@@ -7,14 +7,14 @@ package hopital;
 
 import static hopital.HopitalGraphique.*;
 import java.awt.Color;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Graphics;
-import static javafx.scene.layout.BorderStrokeStyle.SOLID;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 /**
  *
@@ -26,12 +26,14 @@ public abstract class RechercheAvanceeAbs extends JPanel {
     protected JButton r;
     protected JTextArea t;
     protected HopitalGraphique hopGraph;
+    protected JScrollPane pan;
 
     public RechercheAvanceeAbs(HopitalGraphique hop) {
 
         r = new JButton("Retour");
         b = new JButton("Rechercher");
-        t = new JTextArea(8,50);
+        t = new JTextArea(8, 50);
+
         this.hopGraph = hop;
         this.build();
     }
@@ -45,14 +47,25 @@ public abstract class RechercheAvanceeAbs extends JPanel {
         this.add(b);
         this.add(t);
         this.add(r);
+
+        Object obj[][];
+        String str[];
+        obj = new Object[1][1];
+        obj[0][0] = " ";
+        str = new String[1];
+        str[0] = "Aucun résultat";
+
+        pan = new JScrollPane(new JTable(obj, str));
+        this.add(pan);
         repaint();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        b.setBounds(autoSizeX(0.5), autoSizeY(0.6), autoSizeX(0.15), autoSizeY(0.05));
-        r.setBounds(autoSizeX(0.345), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
-        t.setBounds(autoSizeX(0.35), autoSizeY(0.25), autoSizeX(0.3), autoSizeY(0.2));
+        pan.setBounds(autoSizeX(0.42), autoSizeY(0.05), autoSizeX(0.5), autoSizeY(0.78));
+        b.setBounds(autoSizeX(0.2), autoSizeY(0.6), autoSizeX(0.15), autoSizeY(0.05));
+        r.setBounds(autoSizeX(0.05), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        t.setBounds(autoSizeX(0.05), autoSizeY(0.25), autoSizeX(0.3), autoSizeY(0.2));
     }
 }

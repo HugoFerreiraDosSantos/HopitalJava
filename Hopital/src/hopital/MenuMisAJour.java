@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class MenuMisAJour extends JPanel implements ActionListener {
     private final JButton ajout;
     private final JButton suppression;
     private final JButton modification;
+    private final ImagePan back;
 
     public MenuMisAJour(HopitalGraphique hop) {
         hopGraph = hop;
@@ -33,6 +35,7 @@ public class MenuMisAJour extends JPanel implements ActionListener {
         ajout = new JButton("Ajout");
         modification = new JButton("Modification");
         suppression = new JButton("Suppression");
+        back = new ImagePan("image.jpg");
         this.build();
     }
 
@@ -52,7 +55,7 @@ public class MenuMisAJour extends JPanel implements ActionListener {
 
         retour.addActionListener(this);
         this.add(retour);
-
+        this.add(back);
         revalidate();
         repaint();
     }
@@ -65,9 +68,7 @@ public class MenuMisAJour extends JPanel implements ActionListener {
             hopGraph.changeFenetre(5);
         } else if (e.getSource() == modification) {
             hopGraph.changeFenetre(6);
-        }
-        else if (e.getSource() == suppression)
-        {
+        } else if (e.getSource() == suppression) {
             hopGraph.changeFenetre(7);
         }
     }
@@ -75,12 +76,17 @@ public class MenuMisAJour extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        back.setBounds(0, 0, autoSizeX(1.0), autoSizeY(1.0));
         title.setBounds(autoSizeX(0.435), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         ajout.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         modification.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         suppression.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));
         retour.setBounds(autoSizeX(0.36875), autoSizeY(0.75), autoSizeX(0.25), autoSizeY(0.116));
+
+        ajout.setBackground(Color.PINK);
+        modification.setBackground(Color.PINK);
+        suppression.setBackground(Color.PINK);
+        retour.setBackground(Color.PINK);
     }
 
 }
-

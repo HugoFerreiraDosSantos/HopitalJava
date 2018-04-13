@@ -33,10 +33,8 @@ public class Edition extends JPanel implements ActionListener {
     private String[] title;
     private Object data[][];
     private String tableName;
-    private int selectData;
 
     public Edition(HopitalGraphique hop, String tabName) {
-        selectData = 0;
         this.tableName = tabName;
         this.hopGraph = hop;
         edition = new JButton("Modifier");

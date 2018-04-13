@@ -87,8 +87,6 @@ public class SSHTunnel {
             return true;
         } catch (JSchException e) {
 
-            System.out.println(e.getMessage());
-
         }
 
         return false;
