@@ -6,6 +6,7 @@
 package hopital;
 
 import static hopital.HopitalGraphique.*;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -35,8 +36,9 @@ public class MenuConnexion extends JPanel implements ActionListener {
     private JRadioButton distante;
     private JPanel pan_locale;
     private JPanel pan_distante;
-
+    private ImagePan back;
     private JButton valider;
+    private JButton quitter;
     private static Connexion db;
     private JTextField test[];
     private HopitalGraphique hopGraph;
@@ -50,6 +52,8 @@ public class MenuConnexion extends JPanel implements ActionListener {
         locale = new JRadioButton("Locale", true);
         distante = new JRadioButton("Distante");
         valider = new JButton("Valider");
+        quitter = new JButton("Quitter");
+        back = new ImagePan("image.jpg");
         test = new JTextField[7];
         this.build();
 
@@ -73,8 +77,9 @@ public class MenuConnexion extends JPanel implements ActionListener {
             test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));
         }
         pan_locale.setBounds(autoSizeX(0.15), autoSizeY(0.5), autoSizeX(0.5), autoSizeY(0.0667));
+        
         this.add(pan_locale);
-
+        
         pan_distante.add(distante);
         test[3] = new JTextField();
         test[3].setToolTipText("UsernameECE");
@@ -92,9 +97,15 @@ public class MenuConnexion extends JPanel implements ActionListener {
         pan_distante.setBounds(autoSizeX(0.14375), autoSizeY(0.6167), autoSizeX(0.625), autoSizeY(0.0667));
         this.add(pan_distante);
 
-        valider.setBounds(autoSizeX(0.43125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+        valider.setBounds(autoSizeX(0.33125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
         this.add(valider);
         valider.addActionListener(this);
+        
+        quitter.setBounds(autoSizeX(0.53125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+        this.add(quitter);
+        quitter.addActionListener(this);
+        
+        this.add(back);
         repaint();
     }
 
@@ -103,11 +114,9 @@ public class MenuConnexion extends JPanel implements ActionListener {
             if (bool_locale) {
                 //db = new Connexion(test[0].getText(), test[1].getText(), test[2].getText());
                 db = new Connexion("hopital", "root", test[2].getText());
-                System.out.println("locale");
 
             } else {
                 db = new Connexion(test[3].getText(), test[4].getText(), test[5].getText(), test[6].getText());
-                System.out.println("distante");
             }
         } catch (SQLException | ClassNotFoundException ex) {
             if (!"Erreur Connection A Distance".equals(ex.getMessage())) {
@@ -128,7 +137,11 @@ public class MenuConnexion extends JPanel implements ActionListener {
                 hopGraph.changeFenetre(1);
             }
         }
-    }
+        
+        else if(e.getSource()==quitter){
+            System.exit(0);
+        }
+        }
 
     public static Connexion getConnexion() {
         return db;
@@ -142,19 +155,22 @@ public class MenuConnexion extends JPanel implements ActionListener {
         } catch (IOException ex) {
             Logger.getLogger(MenuConnexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        back.setBounds(0,0, autoSizeX(1.0), autoSizeY(1.0));
         for (int i = 0; i < 3; i++) {
             test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));
         }
         pan_locale.setBounds(autoSizeX(0.15), autoSizeY(0.5), autoSizeX(0.5), autoSizeY(0.0667));
-
+        pan_locale.setBackground(Color.PINK);
         for (int i = 3; i < 7; i++) {
             test[i].setPreferredSize(new Dimension(autoSizeX(0.1), autoSizeY(0.05)));
         }
 
         pan_distante.setBounds(autoSizeX(0.14375), autoSizeY(0.6167), autoSizeX(0.625), autoSizeY(0.0667));
-
-        valider.setBounds(autoSizeX(0.43125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+        pan_distante.setBackground(Color.PINK);
+        valider.setBounds(autoSizeX(0.33125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+        valider.setBackground(Color.PINK);
+        quitter.setBounds(autoSizeX(0.53125), autoSizeY(0.7833), autoSizeX(0.125), autoSizeY(0.0667));
+        quitter.setBackground(Color.PINK);
 
     }
 

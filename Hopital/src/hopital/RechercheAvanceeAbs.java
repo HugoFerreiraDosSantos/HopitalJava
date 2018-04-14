@@ -27,12 +27,15 @@ public abstract class RechercheAvanceeAbs extends JPanel {
     protected JTextArea t;
     protected HopitalGraphique hopGraph;
     protected JScrollPane pan;
+    private ImagePan back;
 
     public RechercheAvanceeAbs(HopitalGraphique hop) {
 
         r = new JButton("Retour");
         b = new JButton("Rechercher");
         t = new JTextArea(8, 50);
+        
+        back = new ImagePan("image.jpg");
 
         this.hopGraph = hop;
         this.build();
@@ -57,15 +60,19 @@ public abstract class RechercheAvanceeAbs extends JPanel {
 
         pan = new JScrollPane(new JTable(obj, str));
         this.add(pan);
+        this.add(back);
         repaint();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        back.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(1.0), autoSizeY(1.0));
         pan.setBounds(autoSizeX(0.42), autoSizeY(0.05), autoSizeX(0.5), autoSizeY(0.78));
         b.setBounds(autoSizeX(0.2), autoSizeY(0.6), autoSizeX(0.15), autoSizeY(0.05));
         r.setBounds(autoSizeX(0.05), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        r.setBackground(Color.PINK);
+        b.setBackground(Color.PINK);
         t.setBounds(autoSizeX(0.05), autoSizeY(0.25), autoSizeX(0.3), autoSizeY(0.2));
     }
 }

@@ -144,8 +144,13 @@ public abstract class InterrogationAbs extends JPanel {
         }
         back.setBounds(autoSizeX(0.0), autoSizeY(0.0), autoSizeX(1.0), autoSizeY(1.0));
         for (int i = 0; i < 3; i++) {
-            alias[i].setBackground(Color.PINK);
-            listes[i].setBackground(Color.PINK);
+            alias[i].setBackground(Color.WHITE);
+            listes[i].setBackground(Color.WHITE);
+            listesColonnes[i].setBackground(Color.WHITE);
+            textCriteres[i].setBackground(Color.WHITE);
+            listesCriteres[i].setBackground(Color.WHITE);
+            listesTri[i].setBackground(Color.WHITE);
+            
             alias[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.22), autoSizeX(0.23125), autoSizeY(0.05));
             listes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.14), autoSizeX(0.23125), autoSizeY(0.05));
             listesColonnes[i].setBounds(autoSizeX(0.0925 + i * 0.32), autoSizeY(0.06), autoSizeX(0.23125), autoSizeY(0.05));
@@ -158,7 +163,9 @@ public abstract class InterrogationAbs extends JPanel {
             etOu[i + 1].setBounds(autoSizeX(0.394 + i * 0.16), autoSizeY(0.33), autoSizeX(0.02), autoSizeY(0.02));
         }
         valider.setBounds(autoSizeX(0.545), autoSizeY(0.6), autoSizeX(0.15), autoSizeY(0.05));
+        valider.setBackground(Color.PINK);
         retour.setBounds(autoSizeX(0.345), autoSizeY(0.6), autoSizeX(0.1), autoSizeY(0.05));
+        retour.setBackground(Color.PINK);
     }
 
 }

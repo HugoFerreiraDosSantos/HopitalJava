@@ -10,6 +10,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +27,6 @@ public class MenuMisAJour extends JPanel implements ActionListener {
 
     private final JButton retour;
     private final HopitalGraphique hopGraph;
-    private final JLabel title;
     private final JButton ajout;
     private final JButton suppression;
     private final JButton modification;
@@ -30,7 +34,6 @@ public class MenuMisAJour extends JPanel implements ActionListener {
 
     public MenuMisAJour(HopitalGraphique hop) {
         hopGraph = hop;
-        title = new JLabel("Menu de mise à jour");
         retour = new JButton("Retour");
         ajout = new JButton("Ajout");
         modification = new JButton("Modification");
@@ -42,7 +45,6 @@ public class MenuMisAJour extends JPanel implements ActionListener {
     private void build() {
         this.setLayout(null);
 
-        this.add(title);
 
         ajout.addActionListener(this);
         this.add(ajout);
@@ -76,8 +78,14 @@ public class MenuMisAJour extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        
+        try {
+            g.drawImage(ImageIO.read(new File("maj.png")), 0, 0, autoSizeX(1.0), autoSizeY(1.0), this);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuConnexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         back.setBounds(0, 0, autoSizeX(1.0), autoSizeY(1.0));
-        title.setBounds(autoSizeX(0.435), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         ajout.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         modification.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         suppression.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));

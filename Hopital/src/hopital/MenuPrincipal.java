@@ -10,6 +10,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +27,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
     private final JButton retour;
     private final HopitalGraphique hopGraph;
-    private final JLabel title;
     private final JButton reporting;
     private final JButton interrogation;
     private final JButton miseAJour;
@@ -30,7 +34,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
     public MenuPrincipal(HopitalGraphique hop) {
         hopGraph = hop;
-        title = new JLabel("Menu principal");
         retour = new JButton("Retour");
         reporting = new JButton("Reporting");
         miseAJour = new JButton("Mise à jour");
@@ -41,7 +44,6 @@ public class MenuPrincipal extends JPanel implements ActionListener {
 
     private void build() {
         this.setLayout(null);
-        this.add(title);
         reporting.addActionListener(this);
         this.add(reporting);
 
@@ -74,8 +76,13 @@ public class MenuPrincipal extends JPanel implements ActionListener {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        
+        try {
+            g.drawImage(ImageIO.read(new File("principale.png")), 0, 0, autoSizeX(1.0), autoSizeY(1.0), this);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuConnexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        title.setBounds(autoSizeX(0.44), autoSizeY(0.083), autoSizeX(0.25), autoSizeY(0.116));
         reporting.setBounds(autoSizeX(0.368), autoSizeY(0.25), autoSizeX(0.25), autoSizeY(0.116));
         miseAJour.setBounds(autoSizeX(0.36875), autoSizeY(0.416), autoSizeX(0.25), autoSizeY(0.116));
         interrogation.setBounds(autoSizeX(0.36875), autoSizeY(0.5833), autoSizeX(0.25), autoSizeY(0.116));
