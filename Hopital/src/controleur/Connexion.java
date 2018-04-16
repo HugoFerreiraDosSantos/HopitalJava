@@ -99,7 +99,7 @@ public class Connexion {
             conn = DriverManager.getConnection(connectionString);
 
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
             throw new SQLException("Erreur Connection A Distance");
         }
         local = false;

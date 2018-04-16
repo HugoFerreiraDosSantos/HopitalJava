@@ -148,7 +148,6 @@ public class Edition extends JPanel implements ActionListener {
                             data[i][k] = (String) tm.getValueAt(i, k);
                         }
                         req += " " + where;
-                        System.out.println(req);
                         try {
                             getConnexion().executeUpdate(req);
                         } catch (SQLException ex) {
