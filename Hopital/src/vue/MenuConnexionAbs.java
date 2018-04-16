@@ -93,9 +93,9 @@ public abstract class MenuConnexionAbs extends JPanel {
 
         pan_distante.add(distante);
         test[3] = new JTextField();
-        test[3].setToolTipText("UsernameECE");
-        test[4] = new JPasswordField();
-        test[4].setToolTipText("PasswordECE");
+        test[3].setToolTipText("ServerName");
+        test[4] = new JTextField();
+        test[4].setToolTipText("DatabaseName");
         test[5] = new JTextField();
         test[5].setToolTipText("LoginDatabase");
         test[6] = new JPasswordField();

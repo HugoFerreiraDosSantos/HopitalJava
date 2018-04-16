@@ -47,7 +47,7 @@ public class PatParSer extends JPanel {
 
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(no_malade), code_service FROM hospitalisation GROUP BY (code_service)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(no_malade), code_service FROM hospitalisation GROUP BY (code_service)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }

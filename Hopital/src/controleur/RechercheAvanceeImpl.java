@@ -65,7 +65,7 @@ public class RechercheAvanceeImpl extends RechercheAvanceeAbs implements ActionL
 
                 if (MenuConnexion.getConnexion() != null) {
                     try {
-                        resultats = MenuConnexion.getConnexion().remplirChampsRequete2(requete);
+                        resultats = MenuConnexion.getConnexion().remplirChampsRequete(requete);
                         title = MenuConnexion.getConnexion().remplirChampsColumn(requete);
 
                     } catch (SQLException ex) {

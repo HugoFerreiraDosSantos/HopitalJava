@@ -5,6 +5,7 @@
  */
 package vue;
 
+import static controleur.Connexion.local;
 import controleur.Suppression;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -58,7 +59,12 @@ public abstract class MenuSuppressionAbs extends JPanel {
     private void build() {
         this.setLayout(null);
         try {
-            resultats = MenuConnexion.getConnexion().remplirChampsRequete2("show tables");
+            if (local) {
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("show tables");
+            } else {
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT TABLE_NAME FROM hopital.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'");
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(InterrogationAbs.class.getName()).log(Level.SEVERE, null, ex);
         }

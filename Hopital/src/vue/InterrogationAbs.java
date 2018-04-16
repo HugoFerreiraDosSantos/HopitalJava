@@ -5,6 +5,7 @@
  */
 package vue;
 
+import static controleur.Connexion.local;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
@@ -77,10 +78,18 @@ public abstract class InterrogationAbs extends JPanel {
     private void build() {
         this.setLayout(null);
         try {
-            resultats = MenuConnexion.getConnexion().remplirChampsRequete2("show tables");
+            if (local) {
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("show tables");
+            } else {
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT TABLE_NAME FROM hopital.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'");
+            }
             for (int i = 0; i < resultats.size(); i++) {
                 resultats2.add(new ArrayList<>());
-                resultats2.set(i, MenuConnexion.getConnexion().remplirChampsRequete2("show columns from " + resultats.get(i)));
+                if (local) {
+                    resultats2.set(i, MenuConnexion.getConnexion().remplirChampsRequete("show columns from " + resultats.get(i)));
+                } else {
+                    resultats2.set(i, MenuConnexion.getConnexion().remplirChampsRequete("SELECT * FROM syscolumns WHERE id = OBJECT_ID('" + resultats.get(i) + "')"));
+                }
             }
 
         } catch (SQLException ex) {
@@ -114,6 +123,7 @@ public abstract class InterrogationAbs extends JPanel {
         for (int i = 0; i < resultats2.size(); i++) {
             for (int j = 0; j < resultats2.get(i).size(); j++) {
                 objects2[cpt++] = resultats.get(i) + '.' + resultats2.get(i).get(j).substring(0, resultats2.get(i).get(j).indexOf(";"));
+
             }
         }
         String[] objects3 = new String[]{"", "Egal à", "Different de", "Inferieur à", "Superieur à", "Inferieur ou egal à", "Superieur ou egal à", "Contient", "Commence par", "Termine par"};

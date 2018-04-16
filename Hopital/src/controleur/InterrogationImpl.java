@@ -64,7 +64,7 @@ public class InterrogationImpl extends InterrogationAbs implements ActionListene
         if (!"".equals(requete)) {
             try {
 
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete2(requete);
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete(requete);
                 title = MenuConnexion.getConnexion().remplirChampsColumn(requete);
             } catch (SQLException ex) {
                 Logger.getLogger(InterrogationImpl.class.getName()).log(Level.SEVERE, null, ex);

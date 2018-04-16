@@ -47,7 +47,7 @@ public class MalParSexe extends JPanel {
     private CategoryDataset createDataset() {
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(numero),code_maladie  FROM malade WHERE sexe = 'M'  GROUP BY (code_maladie) UNION ALL SELECT count(numero), code_maladie FROM malade WHERE sexe = 'F' GROUP BY (code_maladie)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(numero),code_maladie  FROM malade WHERE sexe = 'M'  GROUP BY (code_maladie) UNION ALL SELECT count(numero), code_maladie FROM malade WHERE sexe = 'F' GROUP BY (code_maladie)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }

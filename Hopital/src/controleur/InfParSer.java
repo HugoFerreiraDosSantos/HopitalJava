@@ -46,7 +46,7 @@ public class InfParSer extends JPanel {
     private CategoryDataset createDataset() {
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(numero), code_service FROM infirmier WHERE rotation = 'JOUR' GROUP BY (code_service) UNION ALL SELECT count(numero), code_service FROM infirmier WHERE rotation = 'NUIT' GROUP BY (code_service)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(numero), code_service FROM infirmier WHERE rotation = 'JOUR' GROUP BY (code_service) UNION ALL SELECT count(numero), code_service FROM infirmier WHERE rotation = 'NUIT' GROUP BY (code_service)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }

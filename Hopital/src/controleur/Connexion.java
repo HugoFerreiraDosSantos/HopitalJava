@@ -11,6 +11,7 @@ package controleur;
  *
  * Librairies importées
  */
+import com.microsoft.sqlserver.jdbc.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class Connexion {
     private ResultSet rset;
     private ResultSetMetaData rsetMeta;
     private SSHTunnel ssh;
+    public static boolean local = true;
     /**
      * ArrayList public pour les tables
      */
@@ -57,7 +59,7 @@ public class Connexion {
     public Connexion(String nameDatabase, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException {
         // chargement driver "com.mysql.jdbc.Driver"
         Class.forName("com.mysql.jdbc.Driver");
-
+        local = true;
         // url de connexion "jdbc:mysql://localhost:3305/usernameECE"
         String urlDatabase = "jdbc:mysql://localhost/" + nameDatabase;
 
@@ -72,35 +74,35 @@ public class Connexion {
      * Constructeur avec 4 paramètres : username et password ECE, login et
      * password de la BDD à distance sur le serveur de l'ECE
      *
-     * @param usernameECE
-     * @param passwordECE
+     * @param serverName
+     * @param databaseName
      * @param loginDatabase
      * @param passwordDatabase
      * @throws java.sql.SQLException
      * @throws java.lang.ClassNotFoundException
      */
-    public Connexion(String usernameECE, String passwordECE, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException {
+    public Connexion(String serverName, String databaseName, String loginDatabase, String passwordDatabase) throws SQLException, ClassNotFoundException {
         // chargement driver "com.mysql.jdbc.Driver"
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        // Connexion via le tunnel SSH avec le username et le password ECE
-        ssh = new SSHTunnel(usernameECE, passwordECE);
+        String connectionString
+                = "jdbc:sqlserver://" + serverName + ".database.windows.net:1433;"
+                + "database=" + databaseName + ";"
+                + "user=" + loginDatabase + "@" + serverName + ";"
+                + "password=" + passwordDatabase + ";"
+                + "encrypt=true;"
+                + "trustServerCertificate=false;"
+                + "hostNameInCertificate=*.database.windows.net;"
+                + "loginTimeout=30;";
+        SQLServerDataSource ds = null;
+        try {
+            conn = DriverManager.getConnection(connectionString);
 
-        if (ssh.connect()) {
-            System.out.println("Connexion reussie");
+        } catch (Exception e) {
 
-            // url de connexion "jdbc:mysql://localhost:3305/usernameECE"
-            String urlDatabase = "jdbc:mysql://localhost:3305/" + usernameECE;
-
-            //création d'une connexion JDBC à la base
-            conn = DriverManager.getConnection(urlDatabase, loginDatabase, passwordDatabase);
-
-            // création d'un ordre SQL (statement)
-            stmt = conn.createStatement();
-
-        } else {
             throw new SQLException("Erreur Connection A Distance");
         }
+        local = false;
     }
 
     public void DeconnexionSSh() {
@@ -199,8 +201,9 @@ public class Connexion {
         return liste;
     }
 
-    public ArrayList remplirChampsRequete2(String requete) throws SQLException {
+    public ArrayList remplirChampsRequete(String requete) throws SQLException {
         // récupération de l'ordre de la requete
+        stmt = conn.createStatement();
         rset = stmt.executeQuery(requete);
 
         // récupération du résultat de l'ordre

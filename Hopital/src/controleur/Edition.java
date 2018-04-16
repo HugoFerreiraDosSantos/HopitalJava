@@ -64,7 +64,7 @@ public class Edition extends JPanel implements ActionListener {
         resultats = new ArrayList<>();
         title = null;
         try {
-            resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT * FROM " + tableName);
+            resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT * FROM " + tableName);
             title = MenuConnexion.getConnexion().remplirChampsColumn("SELECT * FROM " + tableName);
 
         } catch (SQLException ex) {

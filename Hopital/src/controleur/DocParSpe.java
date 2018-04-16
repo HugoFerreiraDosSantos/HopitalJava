@@ -47,7 +47,7 @@ public class DocParSpe extends JPanel {
 
         if (MenuConnexion.getConnexion() != null) {
             try {
-                resultats = MenuConnexion.getConnexion().remplirChampsRequete2("SELECT count(numero), specialite FROM docteur GROUP BY (specialite)");
+                resultats = MenuConnexion.getConnexion().remplirChampsRequete("SELECT count(numero), specialite FROM docteur GROUP BY (specialite)");
             } catch (SQLException ex) {
                 Logger.getLogger(Hopital.class.getName()).log(Level.SEVERE, null, ex);
             }
