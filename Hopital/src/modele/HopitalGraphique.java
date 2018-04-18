@@ -8,6 +8,8 @@ package modele;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
@@ -16,7 +18,7 @@ import javax.swing.JFrame;
  *
  * @author Aude et Aude
  */
-public class HopitalGraphique extends JFrame {
+public class HopitalGraphique extends JFrame implements KeyListener {
 
     /**
      * Attributs privés : Differents affichages
@@ -30,6 +32,7 @@ public class HopitalGraphique extends JFrame {
     private static Dimension dimFen;
     private MenuAjout menuAjout;
     private MenuEdition menuEdition;
+    private Sound snd;
 
     public HopitalGraphique() {
 
@@ -52,6 +55,7 @@ public class HopitalGraphique extends JFrame {
                 dimFen = e.getComponent().getSize();
             }
         });
+        this.snd = new Sound("Musique.wav");
         this.setContentPane(menuCo);
         this.setResizable(true);
         this.setTitle("Hopital");
@@ -59,6 +63,8 @@ public class HopitalGraphique extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.revalidate();
+        setFocusable(true);
+        this.addKeyListener(this);
     }
 
     /**
@@ -105,6 +111,7 @@ public class HopitalGraphique extends JFrame {
 
         }
         this.revalidate();
+        this.setFocusable(true);
     }
 
     /**
@@ -131,6 +138,22 @@ public class HopitalGraphique extends JFrame {
 
         return (int) (y * (dimFen.getHeight()));
 
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyChar() == 'p' || e.getKeyChar() == 'P') {
+            snd.startStopSound();
+        }
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 
 }

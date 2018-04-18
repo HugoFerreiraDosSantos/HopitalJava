@@ -52,6 +52,10 @@ public class MenuConnexion extends MenuConnexionAbs implements ActionListener {
         return true;
     }
 
+    public boolean getLocal() {
+        return locale.isSelected();
+    }
+
     /**
      * Permet de quitter le logiciel ou de choisir la connexion adapte
      *
@@ -63,6 +67,8 @@ public class MenuConnexion extends MenuConnexionAbs implements ActionListener {
             if (connect(locale.isSelected())) {
                 load();
                 hopGraph.changeFenetre(1);
+            } else {
+                hopGraph.changeFenetre(0);
             }
         } else if (e.getSource() == quitter) {
             System.exit(0);
