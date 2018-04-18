@@ -241,6 +241,7 @@ public class Connexion {
      * @throws java.sql.SQLException
      */
     public void executeUpdate(String requeteMaj) throws SQLException {
+        stmt = conn.createStatement();
         stmt.executeUpdate(requeteMaj);
     }
 }

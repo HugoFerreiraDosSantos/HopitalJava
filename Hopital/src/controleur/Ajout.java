@@ -5,6 +5,7 @@
  */
 package controleur;
 
+import static controleur.SaveAndLoad.save;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,6 +122,7 @@ public class Ajout extends JPanel implements ActionListener {
                 req += ")";
                 try {
                     getConnexion().executeUpdate(req);
+                    save(req);
                 } catch (SQLException ex) {
                     Logger.getLogger(Ajout.class.getName()).log(Level.SEVERE, null, ex);
                 }

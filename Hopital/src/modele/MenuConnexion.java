@@ -6,6 +6,7 @@
 package modele;
 
 import controleur.Connexion;
+import static controleur.SaveAndLoad.load;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -60,6 +61,7 @@ public class MenuConnexion extends MenuConnexionAbs implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == valider) {
             if (connect(locale.isSelected())) {
+                load();
                 hopGraph.changeFenetre(1);
             }
         } else if (e.getSource() == quitter) {

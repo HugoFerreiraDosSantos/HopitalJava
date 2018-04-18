@@ -5,6 +5,7 @@
  */
 package controleur;
 
+import static controleur.SaveAndLoad.save;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -150,6 +151,7 @@ public class Edition extends JPanel implements ActionListener {
                         req += " " + where;
                         try {
                             getConnexion().executeUpdate(req);
+                            save(req);
                         } catch (SQLException ex) {
                             Logger.getLogger(Edition.class.getName()).log(Level.SEVERE, null, ex);
                         }

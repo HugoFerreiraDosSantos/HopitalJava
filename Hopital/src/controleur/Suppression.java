@@ -5,6 +5,7 @@
  */
 package controleur;
 
+import static controleur.SaveAndLoad.save;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -135,6 +136,7 @@ public class Suppression extends JPanel implements ActionListener {
                     }
                     try {
                         getConnexion().executeUpdate(req);
+                        save(req);
                     } catch (SQLException ex) {
                         Logger.getLogger(Suppression.class.getName()).log(Level.SEVERE, null, ex);
                     }
